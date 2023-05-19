@@ -3,15 +3,12 @@ package com.learntocode;
 public class LeasingContract extends Contract {
     private double expectedEndingValue;
     private double leaseFee;
-    private double monthlyPayment;
-    private double totalPrice;
-    private Vehicle vehicleSold;
 
-    public LeasingContract(String customerName, String customerEmail, Vehicle vehicleSold, double expectedEndingValue, double leaseFee, Vehicle vehicleSold1) {
-        super(customerName, customerEmail, vehicleSold);
+
+    public LeasingContract(String date, String customerName, String customerEmail, Vehicle vehicleSold, double expectedEndingValue, double leaseFee) {
+        super(date, customerName, customerEmail, vehicleSold);
         this.expectedEndingValue = expectedEndingValue;
         this.leaseFee = leaseFee;
-        this.vehicleSold = vehicleSold1;
     }
 
     public double getExpectedEndingValue() {
@@ -30,19 +27,11 @@ public class LeasingContract extends Contract {
         this.leaseFee = leaseFee;
     }
 
-    public Vehicle getVehicleSold() {
-        return vehicleSold;
-    }
 
-    public void setVehicleSold(Vehicle vehicleSold) {
-        this.vehicleSold = vehicleSold;
-    }
-    @Override
     public double getTotalPrice() {
-        return (getVehicleSold().getPrice() - expectedEndingValue) + leaseFee;
+        return (super.getVehicleSold().getPrice() - expectedEndingValue) + leaseFee;
     }
 
-    @Override
     public double getMonthlyPayment() {
         int numberOfPayments = 36;
         double interestRate = 4.0 / 1200;

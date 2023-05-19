@@ -2,20 +2,18 @@ package com.learntocode;
 
 public class SalesContract extends Contract {
     private double salesTaxAmount;
-    private double RecordingFee;
+    private double recordingFee;
     private double processingFee;
     private boolean financeOption;
-    private boolean monthlyFinancedPayment;
-    private double recordingFee;
 
-    public SalesContract(String customerName, String customerEmail, Vehicle vehicleSold, double salesTaxAmount, double recordingFee, double processingFee, boolean financeOption) {
-        super(customerName, customerEmail, vehicleSold);
+
+    public SalesContract(String date, String customerName, String customerEmail, Vehicle vehicleSold, double salesTaxAmount, double recordingFee, double processingFee, boolean financeOption) {
+        super(date, customerName, customerEmail, vehicleSold);
         this.salesTaxAmount = salesTaxAmount;
-        RecordingFee = recordingFee;
+        this.recordingFee = recordingFee;
         this.processingFee = processingFee;
         this.financeOption = financeOption;
     }
-
 
     public double getSalesTaxAmount() {
         return salesTaxAmount;
@@ -25,12 +23,21 @@ public class SalesContract extends Contract {
         this.salesTaxAmount = salesTaxAmount;
     }
 
+
     public double getRecordingFee() {
-        return RecordingFee;
+        return recordingFee;
     }
 
     public void setRecordingFee(double recordingFee) {
-        RecordingFee = recordingFee;
+        this.recordingFee = recordingFee;
+    }
+
+    public boolean isFinanceOption() {
+        return financeOption;
+    }
+
+    public void setFinanceOption(boolean financeOption) {
+        this.financeOption = financeOption;
     }
 
     public double getProcessingFee() {
@@ -42,17 +49,17 @@ public class SalesContract extends Contract {
     }
 
 
+    @Override
     public double getTotalPrice() {
-
-        return getVehicleSold().getPrice() + salesTaxAmount + recordingFee + processingFee;
+        return super.getVehicleSold().getPrice() + salesTaxAmount + recordingFee + processingFee;
     }
 
-
+    @Override
     public double getMonthlyPayment() {
         int numberOfPayments = 0;
         double interestRate = 0;
         if (financeOption) {
-            if (getVehicleSold().getPrice() >= 10000) {
+            if (super.getVehicleSold().getPrice() >= 10000) {
                 numberOfPayments = 48;
                 interestRate = 4.25 / 1200;
             } else {
@@ -69,4 +76,3 @@ public class SalesContract extends Contract {
         }
     }
 }
-
