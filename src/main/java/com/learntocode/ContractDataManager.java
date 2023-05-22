@@ -6,7 +6,7 @@ import java.io.*;
 public class ContractDataManager {
 
     public void saveContract (Contract contract) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("contracts.csv",true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Contract.csv",true))) {
             if (contract instanceof SalesContract){
                 bw.write("SALES" + "|" + contract.getDate() + "|" + contract.getCustomerName() + "|" + contract.getCustomerEmail() + "|" +
                         contract.getVehicleSold().getVin() + "|" + contract.getVehicleSold().getYear() + "|" + contract.getVehicleSold().getMake()
